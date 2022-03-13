@@ -32,7 +32,7 @@ namespace Application.UserPositions.Commands.CreateUserPosition
             if (position == null)
                 throw new NotFoundException("position", request.Symbol!);
 
-            // Update and validade user 
+            // Update and validate user 
             var user = _context.Users.Find(_currentUserService.UserId);
             if (user == null)
                 throw new NotFoundException("user", _currentUserService.UserId!.Value);

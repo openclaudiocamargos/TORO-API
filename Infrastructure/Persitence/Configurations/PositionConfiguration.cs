@@ -16,6 +16,10 @@ namespace Infrastructure.Persitence.Configurations
             builder.Property(t => t.Symbol)
                 .HasMaxLength(5);
 
+            builder.Property(t => t.Symbol)
+                .HasMaxLength(5)
+                .IsRequired();
+
             builder.HasIndex(t => t.Symbol)
                 .IsUnique();
         }
