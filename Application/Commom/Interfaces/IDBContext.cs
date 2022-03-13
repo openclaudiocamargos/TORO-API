@@ -9,6 +9,7 @@ namespace Application.Commom.Interfaces
         DbSet<UserPosition> UserPositions { get; }
         DbSet<Position> Positions { get; }
         DbSet<UserPositionAggregate> UserPositionsAggragate { get; }
+        DbSet<PixTransfer> PixTransfers { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

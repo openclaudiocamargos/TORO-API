@@ -21,6 +21,7 @@ namespace Infrastructure.Persitence
         public DbSet<UserPosition> UserPositions => Set<UserPosition>();
         public DbSet<Position> Positions => Set<Position>();
         public DbSet<UserPositionAggregate> UserPositionsAggragate => Set<UserPositionAggregate>();
+        public DbSet<PixTransfer> PixTransfers => Set<PixTransfer>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

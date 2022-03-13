@@ -13,12 +13,27 @@ namespace Infrastructure.Persitence.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property(t => t.Login)
+                .HasMaxLength(30)
+                .IsRequired();
+
+            builder.Property(t => t.Password)
+                .HasMaxLength(30)
+                .IsRequired();
+
             builder.Property(t => t.FirstName)
                 .HasMaxLength(30)
                 .IsRequired();
 
             builder.Property(t => t.LastName)
                 .HasMaxLength(30)
+                .IsRequired();
+
+            builder.HasIndex(t => t.Document)
+                .IsUnique();
+
+            builder.Property(t => t.Document)
+                .HasMaxLength(14)
                 .IsRequired();
 
             builder.Property(t => t.RowVersion)

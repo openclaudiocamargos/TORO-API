@@ -21,11 +21,13 @@ namespace Application.Users.Commands.CreateUser
 
             RuleFor(x => x.FirstName)
                 .NotEmpty().WithMessage("First name not informed.")
-                .MinimumLength(4).WithMessage("Invalid first name value.");
+                .MinimumLength(4).WithMessage("First name too small.")
+                .MaximumLength(30).WithMessage("First name too large.");
 
             RuleFor(x => x.LasttName)
                 .NotEmpty().WithMessage("Last name not informed.")
-                .MinimumLength(4).WithMessage("Invalid last name value.");
+                .MinimumLength(4).WithMessage("Last name too small.")
+                .MaximumLength(30).WithMessage("Last name too large.");
         }
     }
 }
