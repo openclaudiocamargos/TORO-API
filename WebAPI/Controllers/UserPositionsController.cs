@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(CreateUserPositionCommand command)
+        public async Task<ActionResult<CreateUserPositionDto>> Post(CreateUserPositionCommand command)
         {
             return await Mediator.Send(command);
         }
