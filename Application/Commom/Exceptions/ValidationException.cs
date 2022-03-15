@@ -10,6 +10,14 @@ namespace Application.Commom.Exceptions
             Errors = new Dictionary<string, string[]>();
         }
 
+        public ValidationException(string message)
+            : base("One or more validation failures have occurred.")
+        {
+            Errors = new Dictionary<string, string[]>();
+            string[] erro = { message };
+            Errors.Add("message", erro);
+        }
+
         public ValidationException(IEnumerable<ValidationFailure> failures)
             : this()
         {

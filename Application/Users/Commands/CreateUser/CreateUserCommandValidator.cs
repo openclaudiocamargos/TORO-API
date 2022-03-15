@@ -1,9 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Users.Commands.CreateUser
 {
@@ -28,6 +23,11 @@ namespace Application.Users.Commands.CreateUser
                 .NotEmpty().WithMessage("Last name not informed.")
                 .MinimumLength(4).WithMessage("Last name too small.")
                 .MaximumLength(30).WithMessage("Last name too large.");
+
+            RuleFor(x => x.Document)
+                .NotEmpty().WithMessage("Document not informed.")
+                .MinimumLength(11).WithMessage("Document too small.")
+                .MaximumLength(18).WithMessage("Documento too large.");
         }
     }
 }
