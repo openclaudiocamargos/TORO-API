@@ -17,8 +17,11 @@ namespace Infrastructure.Persitence.Configurations
                 .HasMaxLength(30)
                 .IsRequired();
 
+            builder.HasIndex(t => t.Login)
+                .IsUnique();
+
             builder.Property(t => t.Password)
-                .HasMaxLength(30)
+                .HasMaxLength(256)
                 .IsRequired();
 
             builder.Property(t => t.FirstName)

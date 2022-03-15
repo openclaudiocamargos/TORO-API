@@ -2,6 +2,7 @@
 using Application.Users.Queries;
 using Application.Users.Queries.QueryLogin;
 using Application.Users.Queries.QueryUserInformations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -9,6 +10,7 @@ namespace WebAPI.Controllers
     public class UsersController : ApiControllerBase
     {
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<UserInformationsDto>> Get()
         {
             return await Mediator.Send(new GetUserInformationsQuery());

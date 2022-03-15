@@ -23,6 +23,7 @@ namespace Infrastructure
             services.AddScoped<IToroDbContext>(provider => provider.GetRequiredService<ToroDbContext>());
             services.AddScoped<IDomainEventService, DomainEventService>();
             services.AddSingleton<IUserAuthenticationService, UserAuthenticationService>();
+            services.AddSingleton<ICriptographService, CriptographService>();
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

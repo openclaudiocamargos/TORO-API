@@ -18,7 +18,10 @@ namespace Application.UserPositions.Commands.CreateUserPosition
         private readonly IDomainEventService _domainEventService;
         private readonly ICurrentUserService _currentUserService;
 
-        public CreateUserPositionCommandHandler(IToroDbContext context, IDomainEventService domainEventService, ICurrentUserService currentUserService)
+        public CreateUserPositionCommandHandler(IToroDbContext context, 
+            IDomainEventService domainEventService, 
+            ICurrentUserService currentUserService
+            )
         {
             _context = context;
             _domainEventService = domainEventService;
