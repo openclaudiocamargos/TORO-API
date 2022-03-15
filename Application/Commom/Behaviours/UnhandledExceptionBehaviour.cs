@@ -27,7 +27,7 @@ namespace Application.Commom.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogError(ex, "ProjetoToro Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+                _logger.LogError(ex, "Projeto Toro: Exception Request {Name} {@Request}", requestName, request);
 
                 throw;
             }
