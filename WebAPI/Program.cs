@@ -2,11 +2,7 @@ using Application;
 using Application.Commom.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure;
-using Infrastructure.Persitence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using WebAPI.Filters;
 using WebAPI.Services;
 
