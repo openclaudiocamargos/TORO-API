@@ -34,13 +34,14 @@ namespace Application.UserPositions.Queries.QueryPatrimony
 
             var positions = await _context.UserPositionsAggragate
                 .Include(t => t.Position)
-                .Where(i => i.UserId == _currentUserService.UserId!.Value)
+                .Where(i => i.UserId == _currentUserService.UserId!.Value && i.Ammount > 0)
                 .Select(i => new UserPatrimonPositionsDto()
                 {
                     Amount = i.Ammount,
                     CurrentPrice = i.Position.CurrentPrice,
                     Symbol = i.Position.Symbol
                 })
+                .OrderByDescending(i => i.Amount * i.CurrentPrice)
                 .ToListAsync(cancellationToken);
 
             var patrimony = new UserPatrimonyDto()

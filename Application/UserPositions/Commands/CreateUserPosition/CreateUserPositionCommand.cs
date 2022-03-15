@@ -6,13 +6,13 @@ using MediatR;
 
 namespace Application.UserPositions.Commands.CreateUserPosition
 {
-    public class CreateUserPositionCommand : IRequest<int>
+    public class CreateUserPositionCommand : IRequest<CreateUserPositionDto>
     {
-        public string? Symbol { get; set; }
+        public string Symbol { get; set; } = "";
         public int Amount { get; set; }
     }
 
-    public class CreateUserPositionCommandHandler : IRequestHandler<CreateUserPositionCommand, int>
+    public class CreateUserPositionCommandHandler : IRequestHandler<CreateUserPositionCommand, CreateUserPositionDto>
     {
         private readonly IToroDbContext _context;
         private readonly IDomainEventService _domainEventService;
@@ -25,7 +25,7 @@ namespace Application.UserPositions.Commands.CreateUserPosition
             _currentUserService = currentUserService;
         }
 
-        public async Task<int> Handle(CreateUserPositionCommand request, CancellationToken cancellationToken)
+        public async Task<CreateUserPositionDto> Handle(CreateUserPositionCommand request, CancellationToken cancellationToken)
         {
             var position = _context.Positions.Where(i => i.Symbol == request.Symbol).FirstOrDefault();
             if (position == null)
@@ -77,7 +77,12 @@ namespace Application.UserPositions.Commands.CreateUserPosition
             await _context.SaveChangesAsync(cancellationToken);
             await _domainEventService.Publish(new UserPositionCreatedEvent(entity));
 
-            return entity.Id;
+            return new CreateUserPositionDto()
+            {
+                Amount = request.Amount,
+                Symbol = request.Symbol,
+                Price = position.CurrentPrice
+            };
         }
     }
 }

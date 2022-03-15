@@ -11,5 +11,6 @@ namespace Application.Positions.Queries.QueryTopPositions
         public string? Symbol { get; set; }
         public int TotalAmount { get; set; }
         public decimal TotalValue { get; set; }
+        public decimal CurrentPrice { get; set; }
     }
 }
