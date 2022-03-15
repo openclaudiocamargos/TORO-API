@@ -14,10 +14,7 @@ namespace Infrastructure.Persitence.Configurations
         public void Configure(EntityTypeBuilder<Position> builder)
         {
             builder.Property(t => t.Symbol)
-                .HasMaxLength(5);
-
-            builder.Property(t => t.Symbol)
-                .HasMaxLength(5)
+                .HasMaxLength(10)
                 .IsRequired();
 
             builder.HasIndex(t => t.Symbol)

@@ -1,7 +1,7 @@
 ﻿using Application.Commom.Mappings;
 using Domain.Entities;
 
-namespace Application.Users.Queries
+namespace Application.Users.Queries.QueryLogin
 {
     public class UserDto : IMapFrom<User>
     {

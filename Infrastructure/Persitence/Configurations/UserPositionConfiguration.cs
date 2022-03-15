@@ -13,6 +13,7 @@ namespace Infrastructure.Persitence.Configurations
     {
         public void Configure(EntityTypeBuilder<UserPosition> builder)
         {
+            builder.HasIndex(t => t.CreatedAt);
         }
     }
 }

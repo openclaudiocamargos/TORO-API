@@ -11,7 +11,6 @@ namespace WebAPI.Filters
 
         public ApiExceptionFilterAttribute()
         {
-            // Register known exception types and handlers.
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 { typeof(ValidationException), HandleValidationException },
@@ -62,10 +61,7 @@ namespace WebAPI.Filters
 
         private void HandleInvalidModelStateException(ExceptionContext context)
         {
-            var details = new ValidationProblemDetails(context.ModelState)
-            {
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
-            };
+            var details = new ValidationProblemDetails(context.ModelState);
 
             context.Result = new BadRequestObjectResult(details);
 
@@ -78,7 +74,6 @@ namespace WebAPI.Filters
 
             var details = new ProblemDetails()
             {
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",
                 Detail = exception.Message
             };
@@ -93,8 +88,7 @@ namespace WebAPI.Filters
             var details = new ProblemDetails
             {
                 Status = StatusCodes.Status401Unauthorized,
-                Title = "Unauthorized",
-                Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
+                Title = "Unauthorized"
             };
 
             context.Result = new ObjectResult(details)
@@ -111,8 +105,7 @@ namespace WebAPI.Filters
             {
                 Status = StatusCodes.Status403Forbidden,
                 Title = "Forbidden",
-                Detail = context.Exception.Message,
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3"
+                Detail = context.Exception.Message
             };
 
             context.Result = new ObjectResult(details)
@@ -128,8 +121,7 @@ namespace WebAPI.Filters
             var details = new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,
-                Title = "An error occurred while processing your request.",
-                Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
+                Title = "An error occurred while processing your request."
             };
 
             context.Result = new ObjectResult(details)

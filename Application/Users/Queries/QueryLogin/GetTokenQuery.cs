@@ -6,7 +6,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Users.Queries
+namespace Application.Users.Queries.QueryLogin
 {
     public class GetTokenQuery : IRequest<UserDto>
     {
