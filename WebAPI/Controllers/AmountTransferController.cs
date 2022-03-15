@@ -6,7 +6,7 @@ namespace WebAPI.Controllers
 {
     public class AmountTransferController : ApiControllerBase
     {
-        [HttpPost]
+        [HttpPost("PIX")]
         public async Task<ActionResult<int>> Post(CreateAmountPIXTransferCommand command)
         {
             return await Mediator.Send(command);

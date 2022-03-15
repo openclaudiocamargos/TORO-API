@@ -8,7 +8,7 @@ namespace WebAPI.Controllers
     [Authorize]
     public class UserPositionsController : ApiControllerBase
     {
-        [HttpGet]
+        [HttpGet("Patromony")]
         public async Task<ActionResult<UserPatrimonyDto>> Get()
         {
             return await Mediator.Send(new GetPatrimonyQuery());

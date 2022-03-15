@@ -27,15 +27,17 @@ namespace Application.UserPositions.Commands.CreateUserPosition
 
         public async Task<int> Handle(CreateUserPositionCommand request, CancellationToken cancellationToken)
         {
-            // Get position informations
             var position = _context.Positions.Where(i => i.Symbol == request.Symbol).FirstOrDefault();
             if (position == null)
                 throw new NotFoundException("position", request.Symbol!);
 
-            // Update and validate user 
             var user = _context.Users.Find(_currentUserService.UserId);
             if (user == null)
                 throw new NotFoundException("user", _currentUserService.UserId!.Value);
+
+            var positionAggregate = _context.UserPositionsAggragate.Where(i => i.PositionId == position.Id && i.UserId == _currentUserService.UserId!.Value).FirstOrDefault();
+
+            // Update and validate user 
             user.AccountAmount -= request.Amount * position.CurrentPrice;
             if (user.AccountAmount < 0)
                 throw new ForbiddenAccessException("Insuficiente funds");
@@ -53,7 +55,6 @@ namespace Application.UserPositions.Commands.CreateUserPosition
             _context.UserPositions.Add(entity);
 
             // Update and validade user position
-            var positionAggregate = _context.UserPositionsAggragate.Where(i => i.PositionId == position.Id && i.UserId == _currentUserService.UserId!.Value).FirstOrDefault();
             if (positionAggregate != null)
             {
                 positionAggregate.Ammount += request.Amount;

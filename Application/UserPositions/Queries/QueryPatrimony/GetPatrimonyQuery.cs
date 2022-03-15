@@ -41,7 +41,7 @@ namespace Application.UserPositions.Queries.QueryPatrimony
                     CurrentPrice = i.Position.CurrentPrice,
                     Symbol = i.Position.Symbol
                 })
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var patrimony = new UserPatrimonyDto()
             {
